@@ -1,0 +1,15 @@
+import cv2
+#定义人脸检测的分类器
+face_cascade=cv2.CascadeClassifier('D:/ProgramData/Anaconda3/Lib/site-packages/cv2/data/haarcascade_eye_tree_eyeglasses.xml')
+#读取图片
+img=cv2.imread("D:\head.jpg")
+gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+#探测图片中的人脸
+faces=face_cascade.detectMultiScale(gray)
+print("发现{0}个人脸！".format(len(faces)))
+for(x,y,w,h) in faces:
+    cv2.rectangle(img,(x,y),(x+w,y+w),(0,255,0),2)
+    #cv2.circle(img,(int((x+x+w)/2),int((y+y+h)/2)),int(w/2),(0,255,0),2)
+    cv2.imshow("Find Faces!",img)
+    cv2.imwrite("D:\Q.JPG",img)
+    cv2.waitKey(0)
